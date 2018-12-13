@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class SimpleEnemyController : MonoBehaviour {
+public class SimpleEnemyController : NetworkBehaviour {
 
     public float moveSpeed;
     public float movementDelay; // Delay in seconds.
@@ -20,6 +21,7 @@ public class SimpleEnemyController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        if (isClient) return;
         if (Time.fixedTime < movementClock)
         {
             anim.SetFloat("MoveX", moveDirection.x);
